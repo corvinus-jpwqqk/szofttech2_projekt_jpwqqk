@@ -36,7 +36,6 @@ namespace szofttech2_projekt_jpwqqk
             menuButtons.Add(button4);
             menuButtons.Add(button5);
             OpenPeople();
-
         }
 
         void resetButtons()

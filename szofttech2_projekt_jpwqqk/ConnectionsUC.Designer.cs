@@ -42,8 +42,12 @@ namespace szofttech2_projekt_jpwqqk
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.contactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.formatContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formatContactBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPersonFilter
@@ -126,6 +130,8 @@ namespace szofttech2_projekt_jpwqqk
             this.listBoxPersonContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxPersonContacts.DataSource = this.formatContactBindingSource;
+            this.listBoxPersonContacts.DisplayMember = "contact_display";
             this.listBoxPersonContacts.FormattingEnabled = true;
             this.listBoxPersonContacts.ItemHeight = 16;
             this.listBoxPersonContacts.Location = new System.Drawing.Point(237, 65);
@@ -166,6 +172,14 @@ namespace szofttech2_projekt_jpwqqk
             this.label4.TabIndex = 16;
             this.label4.Text = "Funkció még nem működik";
             // 
+            // contactBindingSource1
+            // 
+            this.contactBindingSource1.DataSource = typeof(szofttech2_projekt_jpwqqk.Contact);
+            // 
+            // formatContactBindingSource
+            // 
+            this.formatContactBindingSource.DataSource = typeof(szofttech2_projekt_jpwqqk.FormatContact);
+            // 
             // ConnectionsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -184,6 +198,8 @@ namespace szofttech2_projekt_jpwqqk
             this.Size = new System.Drawing.Size(938, 545);
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formatContactBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +219,7 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource formatContactBindingSource;
+        private System.Windows.Forms.BindingSource contactBindingSource1;
     }
 }

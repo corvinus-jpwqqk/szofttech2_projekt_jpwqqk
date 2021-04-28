@@ -186,6 +186,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Connection.datasource" />
     <None Include="Properties\DataSources\Contact.datasource" />
+    <None Include="Properties\DataSources\FormatContact.datasource" />
     <None Include="Properties\DataSources\Person.datasource" />
     <None Include="Properties\DataSources\Vaccination.datasource" />
     <None Include="Properties\DataSources\Vaccine.datasource" />

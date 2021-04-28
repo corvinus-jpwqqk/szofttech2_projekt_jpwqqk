@@ -25,10 +25,10 @@ namespace szofttech2_projekt_jpwqqk
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Connection> Connections { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Vaccination> Vaccinations { get; set; }
         public virtual DbSet<Vaccine> Vaccines { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
     }
 }

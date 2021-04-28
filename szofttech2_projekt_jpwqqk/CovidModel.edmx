@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="covidDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="covidDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Connection">
           <Key>
             <PropertyRef Name="connect_id" />
           </Key>
-          <Property Name="connect_id" Type="int" Nullable="false" />
+          <Property Name="connect_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="contact_id" Type="int" Nullable="false" />
         </EntityType>
@@ -117,21 +117,10 @@
             <End Role="Vaccination" EntitySet="Vaccination" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="covidDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Connection">
-          <Key>
-            <PropertyRef Name="connect_id" />
-          </Key>
-          <Property Name="connect_id" Type="Int32" Nullable="false" />
-          <Property Name="person_id" Type="Int32" Nullable="false" />
-          <Property Name="contact_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Contact" Relationship="Self.FK_Connection_ToContact" FromRole="Connection" ToRole="Contact" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_Connection_ToPerson" FromRole="Connection" ToRole="Person" />
-        </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="contact_id" />
@@ -139,7 +128,7 @@
           <Property Name="contact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="contact_date" Type="DateTime" Precision="0" />
           <Property Name="contact_place" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Connections" Relationship="Self.FK_Connection_ToContact" FromRole="Contact" ToRole="Connection" />
+          <NavigationProperty Name="Connections" Relationship="covidDatabaseModel.FK_Connection_ToContact" FromRole="Contact" ToRole="Connection" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -149,8 +138,8 @@
           <Property Name="person_name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="person_birthdate" Type="DateTime" Precision="0" />
           <Property Name="person_number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Connections" Relationship="Self.FK_Connection_ToPerson" FromRole="Person" ToRole="Connection" />
           <NavigationProperty Name="Vaccinations" Relationship="Self.FK_Vaccination_ToPerson" FromRole="Person" ToRole="Vaccination" />
+          <NavigationProperty Name="Connections" Relationship="covidDatabaseModel.FK_Connection_ToPerson" FromRole="Person" ToRole="Connection" />
         </EntityType>
         <EntityType Name="Vaccination">
           <Key>
@@ -171,30 +160,6 @@
           <Property Name="vaccine_name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Vaccinations" Relationship="Self.FK_Vaccination_ToVaccine" FromRole="Vaccine" ToRole="Vaccination" />
         </EntityType>
-        <Association Name="FK_Connection_ToContact">
-          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
-          <End Role="Connection" Type="Self.Connection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contact">
-              <PropertyRef Name="contact_id" />
-            </Principal>
-            <Dependent Role="Connection">
-              <PropertyRef Name="contact_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Connection_ToPerson">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Connection" Type="Self.Connection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="person_id" />
-            </Principal>
-            <Dependent Role="Connection">
-              <PropertyRef Name="person_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vaccination_ToPerson">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
@@ -220,19 +185,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="covidDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Connections" EntityType="Self.Connection" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="Vaccinations" EntityType="Self.Vaccination" />
           <EntitySet Name="Vaccines" EntityType="Self.Vaccine" />
-          <AssociationSet Name="FK_Connection_ToContact" Association="Self.FK_Connection_ToContact">
-            <End Role="Contact" EntitySet="Contacts" />
-            <End Role="Connection" EntitySet="Connections" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Connection_ToPerson" Association="Self.FK_Connection_ToPerson">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Connection" EntitySet="Connections" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vaccination_ToPerson" Association="Self.FK_Vaccination_ToPerson">
             <End Role="Person" EntitySet="People" />
             <End Role="Vaccination" EntitySet="Vaccinations" />
@@ -241,22 +197,56 @@
             <End Role="Vaccine" EntitySet="Vaccines" />
             <End Role="Vaccination" EntitySet="Vaccinations" />
           </AssociationSet>
+          <EntitySet Name="Connections" EntityType="covidDatabaseModel.Connection" />
+          <AssociationSet Name="FK_Connection_ToContact" Association="covidDatabaseModel.FK_Connection_ToContact">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Connection" EntitySet="Connections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Connection_ToPerson" Association="covidDatabaseModel.FK_Connection_ToPerson">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Connection" EntitySet="Connections" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Connection">
+          <Key>
+            <PropertyRef Name="connect_id" />
+          </Key>
+          <Property Name="connect_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_id" Type="Int32" Nullable="false" />
+          <Property Name="contact_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contact" Relationship="covidDatabaseModel.FK_Connection_ToContact" FromRole="Connection" ToRole="Contact" />
+          <NavigationProperty Name="Person" Relationship="covidDatabaseModel.FK_Connection_ToPerson" FromRole="Connection" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Connection_ToContact">
+          <End Type="covidDatabaseModel.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="covidDatabaseModel.Connection" Role="Connection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="contact_id" />
+            </Principal>
+            <Dependent Role="Connection">
+              <PropertyRef Name="contact_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Connection_ToPerson">
+          <End Type="covidDatabaseModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="covidDatabaseModel.Connection" Role="Connection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Connection">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="covidDatabaseModelStoreContainer" CdmEntityContainer="covidDatabaseEntities">
-          <EntitySetMapping Name="Connections">
-            <EntityTypeMapping TypeName="covidDatabaseModel.Connection">
-              <MappingFragment StoreEntitySet="Connection">
-                <ScalarProperty Name="connect_id" ColumnName="connect_id" />
-                <ScalarProperty Name="person_id" ColumnName="person_id" />
-                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="covidDatabaseModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
@@ -291,6 +281,15 @@
               <MappingFragment StoreEntitySet="Vaccine">
                 <ScalarProperty Name="vaccine_id" ColumnName="vaccine_id" />
                 <ScalarProperty Name="vaccine_name" ColumnName="vaccine_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Connections">
+            <EntityTypeMapping TypeName="covidDatabaseModel.Connection">
+              <MappingFragment StoreEntitySet="Connection">
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="connect_id" ColumnName="connect_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,8 +17,8 @@ namespace szofttech2_projekt_jpwqqk
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.Connections = new HashSet<Connection>();
             this.Vaccinations = new HashSet<Vaccination>();
+            this.Connections = new HashSet<Connection>();
         }
     
         public int person_id { get; set; }
@@ -27,8 +27,8 @@ namespace szofttech2_projekt_jpwqqk
         public string person_number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Connection> Connections { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vaccination> Vaccinations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Connection> Connections { get; set; }
     }
 }

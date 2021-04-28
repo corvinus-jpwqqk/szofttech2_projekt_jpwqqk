@@ -55,8 +55,7 @@ namespace szofttech2_projekt_jpwqqk
                                          contact_display = x.Contact.contact_place + " - " + x.Contact.contact_date.ToString()
                                      };
 
-                listBoxPersonContacts.DataSource = personContacts.ToList();
-                listBoxPersonContacts.DisplayMember = "contact-display";
+                formatContactBindingSource.DataSource = personContacts.ToList();
             }
             else return;
         }
