@@ -39,15 +39,14 @@ namespace szofttech2_projekt_jpwqqk
             this.textBoxContactFilter = new System.Windows.Forms.TextBox();
             this.contactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.listBoxPersonContacts = new System.Windows.Forms.ListBox();
+            this.formatContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.contactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.formatContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.formatContactBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPersonFilter
@@ -139,6 +138,10 @@ namespace szofttech2_projekt_jpwqqk
             this.listBoxPersonContacts.Size = new System.Drawing.Size(246, 452);
             this.listBoxPersonContacts.TabIndex = 9;
             // 
+            // formatContactBindingSource
+            // 
+            this.formatContactBindingSource.DataSource = typeof(szofttech2_projekt_jpwqqk.FormatContact);
+            // 
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -161,30 +164,14 @@ namespace szofttech2_projekt_jpwqqk
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(489, 65);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(230, 20);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Funkció még nem működik";
-            // 
             // contactBindingSource1
             // 
             this.contactBindingSource1.DataSource = typeof(szofttech2_projekt_jpwqqk.Contact);
-            // 
-            // formatContactBindingSource
-            // 
-            this.formatContactBindingSource.DataSource = typeof(szofttech2_projekt_jpwqqk.FormatContact);
             // 
             // ConnectionsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listBoxPersonContacts);
@@ -198,8 +185,8 @@ namespace szofttech2_projekt_jpwqqk
             this.Size = new System.Drawing.Size(938, 545);
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.formatContactBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,7 +205,6 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.ListBox listBoxPersonContacts;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource formatContactBindingSource;
         private System.Windows.Forms.BindingSource contactBindingSource1;
     }

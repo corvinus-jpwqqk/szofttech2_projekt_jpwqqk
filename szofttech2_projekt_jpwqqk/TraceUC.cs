@@ -14,7 +14,6 @@ namespace szofttech2_projekt_jpwqqk
     {
         covidDatabaseEntities context = new covidDatabaseEntities();
         List<int> traced = new List<int>();
-        List<Person> found = new List<Person>();
         public TraceUC()
         {
             InitializeComponent();
@@ -28,20 +27,32 @@ namespace szofttech2_projekt_jpwqqk
             personBindingSource.DataSource = people.ToList();
         }
 
-        void trace(int personID, int weeks)
+        void listTraced()
         {
-            foreach(int id in traced)
+            var p = (from x in context.People
+                     where traced.Contains(x.person_id)
+                     select x).ToList();
+            personBindingSource1.DataSource = p;
+        }
+
+        void trace(int personID)
+        {
+            var contactID = (from x in context.Connections
+                            where x.person_id == personID
+                            select x.contact_id).ToList();
+            foreach(var contactf in contactID)
             {
-                if(id == personID)
+                var people = (from x in context.Connections
+                             where x.contact_id == contactf
+                             select x.person_id).ToList();
+                foreach(var personid in people)
                 {
-                    return;
+                    traced.Add(personid);
                 }
             }
-            traced.Add(personID);
-            var contacts = from x in context.Connections
-                           where x.person_id == personID
-                           select x;
-            //finish
+
+            listTraced();
+           
         }
 
         private void textBoxPersonFilter_TextChanged(object sender, EventArgs e)
@@ -51,9 +62,9 @@ namespace szofttech2_projekt_jpwqqk
 
         private void buttonTrace_Click(object sender, EventArgs e)
         {
-            int week = (int)numericUpDownWeek.Value;
+            traced.Clear();
             int personID = ((Person)personBindingSource.Current).person_id;
-            //trace(personID, week);
+            trace(personID);
         }
     }
 }

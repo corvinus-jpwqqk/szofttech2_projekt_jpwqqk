@@ -30,16 +30,27 @@ namespace szofttech2_projekt_jpwqqk
 
         void listContacts()
         {
-            var contacts = from x in context.Contacts
-                           where x.contact_place.Contains(textBoxContactFilter.Text) ||
-                                    x.contact_date.ToString().Contains(textBoxContactFilter.Text)
-                           select new FormatContact
-                           {
-                               contact_id = x.contact_id,
-                               contact_display = x.contact_place + " - " + x.contact_date.ToString()
-                           };
-            listBoxContact.DataSource = contacts.ToList();
-            listBoxContact.DisplayMember = "contact_display";
+            if(personBindingSource.Current == null)
+            {
+                return;
+            }
+            else
+            {
+                var personID = ((Person)personBindingSource.Current).person_id;
+                var contacts = from x in context.Contacts
+                               where (x.contact_place.Contains(textBoxContactFilter.Text) ||
+                                        x.contact_date.ToString().Contains(textBoxContactFilter.Text))
+                                        && !((from y in context.Connections
+                                              where y.person_id == personID
+                                              select y.contact_id).Contains(x.contact_id))
+                               select new FormatContact
+                               {
+                                   contact_id = x.contact_id,
+                                   contact_display = x.contact_place + " - " + x.contact_date.ToString()
+                               };
+                listBoxContact.DataSource = contacts.ToList();
+                listBoxContact.DisplayMember = "contact_display";
+            }
         }
 
         void listPersonContacts()
@@ -52,7 +63,8 @@ namespace szofttech2_projekt_jpwqqk
                                      select new FormatContact
                                      {
                                          contact_id = x.contact_id,
-                                         contact_display = x.Contact.contact_place + " - " + x.Contact.contact_date.ToString()
+                                         contact_display = x.Contact.contact_place + " - " + x.Contact.contact_date.ToString(),
+                                         connect_id = x.connect_id
                                      };
 
                 formatContactBindingSource.DataSource = personContacts.ToList();
@@ -73,6 +85,7 @@ namespace szofttech2_projekt_jpwqqk
         private void listBoxPerson_SelectedIndexChanged(object sender, EventArgs e)
         {
             listPersonContacts();
+            listContacts();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -91,6 +104,7 @@ namespace szofttech2_projekt_jpwqqk
                     {
                         context.SaveChanges();
                         listPersonContacts();
+                        listContacts();
                     }
                     catch (Exception ex)
                     {
@@ -112,7 +126,29 @@ namespace szofttech2_projekt_jpwqqk
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-
+            if(formatContactBindingSource.Current == null)
+            {
+                MessageBox.Show("Select a connection to remove!");
+                return;
+            }
+            else
+            {
+                var connID = ((FormatContact)formatContactBindingSource.Current).connect_id;
+                var deleteConn = (from x in context.Connections
+                                  where x.connect_id == connID
+                                  select x).FirstOrDefault();
+                context.Connections.Remove(deleteConn);
+                try
+                {
+                    context.SaveChanges();
+                    listPersonContacts();
+                    listContacts();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(" ajaj " + ex.Message);
+                }
+            }
         }
     }
 }

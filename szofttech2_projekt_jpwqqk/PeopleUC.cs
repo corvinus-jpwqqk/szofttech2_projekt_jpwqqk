@@ -90,6 +90,42 @@ namespace szofttech2_projekt_jpwqqk
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             var deleteID = ((Person)personBindingSource.Current).person_id;
+            //delete connections
+            var deleteConn = (from x in context.Connections
+                              where x.person_id == deleteID
+                              select x).ToList();
+            foreach(var conn in deleteConn)
+            {
+                context.Connections.Remove(conn);
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Connection deletion error: " + ex.Message);
+                }
+            }
+
+            //delete vaccinations
+            var deleteVacc = (from x in context.Vaccinations
+                              where x.person_id == deleteID
+                              select x).ToList();
+            foreach(var vac in deleteVacc)
+            {
+                context.Vaccinations.Remove(vac);
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Vaccination deletion error: " + ex.Message);
+                }
+            }
+
+
+            //delete person
             var deletePerson = (from x in context.People
                                where x.person_id == deleteID
                                select x).FirstOrDefault();
@@ -167,6 +203,7 @@ namespace szofttech2_projekt_jpwqqk
                 buttonAdd.Enabled = true;
                 buttonDelete.Enabled = true;
                 buttonEditSave.Text = "Edit";
+                editing = false;
             }
             
         }

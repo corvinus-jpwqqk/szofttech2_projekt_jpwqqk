@@ -10,5 +10,7 @@ namespace szofttech2_projekt_jpwqqk
     {
         public int contact_id { get; set; }
         public string contact_display { get; set; }
+
+        public int connect_id { get; set; }
     }
 }

@@ -59,6 +59,25 @@ namespace szofttech2_projekt_jpwqqk
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             var deleteID = ((Vaccine)vaccineBindingSource.Current).vaccine_id;
+
+            //delete vaccinations
+            var vacc = (from x in context.Vaccinations
+                        where x.vaccine_id == deleteID
+                        select x).ToList();
+            foreach(var vac in vacc)
+            {
+                context.Vaccinations.Remove(vac);
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Vaccination deletion error: " + ex.Message);
+                }
+            }
+
+            //delete vaccine
             var deleteVaccine = (from x in context.Vaccines
                                  where x.vaccine_id == deleteID
                                  select x).FirstOrDefault();

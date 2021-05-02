@@ -75,6 +75,25 @@ namespace szofttech2_projekt_jpwqqk
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             var deleteID = ((Contact)contactBindingSource.Current).contact_id;
+
+            //delete connections
+            var connections = (from x in context.Connections
+                               where x.contact_id == deleteID
+                               select x).ToList();
+            foreach(var con in connections)
+            {
+                context.Connections.Remove(con);
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Connection deletion error: " + ex.Message);
+                }
+            }
+
+            //delete contact
             var deleteContact = (from x in context.Contacts
                                  where x.contact_id == deleteID
                                  select x).FirstOrDefault();

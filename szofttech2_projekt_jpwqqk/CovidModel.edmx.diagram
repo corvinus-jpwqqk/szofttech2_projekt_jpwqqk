@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d9f0404c59d24f2ea418032b575685e2" Name="Diagram1">
-        <EntityTypeShape EntityType="covidDatabaseModel.Contact" Width="1.5" PointX="9.375" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="covidDatabaseModel.Person" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="covidDatabaseModel.Vaccination" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="covidDatabaseModel.Vaccine" Width="1.5" PointX="3.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="covidDatabaseModel.Contact" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="covidDatabaseModel.Person" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="covidDatabaseModel.Vaccination" Width="1.5" PointX="3.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="covidDatabaseModel.Vaccine" Width="1.5" PointX="2.625" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="covidDatabaseModel.FK_Vaccination_ToPerson" ManuallyRouted="false" />
         <AssociationConnector Association="covidDatabaseModel.FK_Vaccination_ToVaccine" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="covidDatabaseModel.Connection" Width="1.5" PointX="7.25" PointY="0.875" />
+        <EntityTypeShape EntityType="covidDatabaseModel.Connection" Width="1.5" PointX="7.625" PointY="1.375" />
         <AssociationConnector Association="covidDatabaseModel.FK_Connection_ToContact" />
         <AssociationConnector Association="covidDatabaseModel.FK_Connection_ToPerson" />
       </Diagram>
