@@ -37,8 +37,6 @@ namespace szofttech2_projekt_jpwqqk
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.personidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personbirthdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +44,9 @@ namespace szofttech2_projekt_jpwqqk
             this.connectionsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vaccinationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonEditSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -124,26 +125,6 @@ namespace szofttech2_projekt_jpwqqk
             this.dataGridView1.Size = new System.Drawing.Size(634, 521);
             this.dataGridView1.TabIndex = 6;
             // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Location = new System.Drawing.Point(62, 239);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(117, 50);
-            this.buttonAdd.TabIndex = 7;
-            this.buttonAdd.Text = "Add";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Location = new System.Drawing.Point(62, 357);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(117, 50);
-            this.buttonDelete.TabIndex = 8;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
             // personidDataGridViewTextBoxColumn
             // 
             this.personidDataGridViewTextBoxColumn.DataPropertyName = "person_id";
@@ -205,10 +186,41 @@ namespace szofttech2_projekt_jpwqqk
             // 
             this.personBindingSource.DataSource = typeof(szofttech2_projekt_jpwqqk.Person);
             // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(62, 206);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(117, 50);
+            this.buttonAdd.TabIndex = 7;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(62, 346);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(117, 50);
+            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // buttonEditSave
+            // 
+            this.buttonEditSave.Location = new System.Drawing.Point(62, 275);
+            this.buttonEditSave.Name = "buttonEditSave";
+            this.buttonEditSave.Size = new System.Drawing.Size(117, 50);
+            this.buttonEditSave.TabIndex = 9;
+            this.buttonEditSave.Text = "Edit";
+            this.buttonEditSave.UseVisualStyleBackColor = true;
+            this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
+            // 
             // PeopleUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonEditSave);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView1);
@@ -245,5 +257,6 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.DataGridViewTextBoxColumn personnumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn connectionsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vaccinationsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button buttonEditSave;
     }
 }

@@ -13,6 +13,8 @@ namespace szofttech2_projekt_jpwqqk
     public partial class VaccinesUC : UserControl
     {
         covidDatabaseEntities context = new covidDatabaseEntities();
+        bool editing = false;
+        int editingID;
         public VaccinesUC()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace szofttech2_projekt_jpwqqk
             {
                 context.SaveChanges();
                 listVaccines();
+                textBoxName.Text = "";
             }
             catch (Exception ex)
             {
@@ -68,6 +71,55 @@ namespace szofttech2_projekt_jpwqqk
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonEditSave_Click(object sender, EventArgs e)
+        {
+            if (!editing)
+            {
+                if(vaccineBindingSource.Current == null)
+                {
+                    MessageBox.Show("No item selected;");
+                    return;
+                }
+                else
+                {
+                    editing = true;
+                    editingID = ((Vaccine)vaccineBindingSource.Current).vaccine_id;
+                    var editedVaccine = (from x in context.Vaccines
+                                         where x.vaccine_id == editingID
+                                         select x).FirstOrDefault();
+                    textBoxName.Text = editedVaccine.vaccine_name;
+                    buttonAdd.Enabled = false;
+                    buttonDelete.Enabled = false;
+                    buttonEditSave.Text = "Save";
+                }
+            }
+            else
+            {
+                if (!checkName())
+                {
+                    MessageBox.Show("Name missing!");
+                    return;
+                }
+                var editedVaccine = (from x in context.Vaccines
+                                     where x.vaccine_id == editingID
+                                     select x).FirstOrDefault();
+                editedVaccine.vaccine_name = textBoxName.Text;
+                try
+                {
+                    context.SaveChanges();
+                    listVaccines();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                buttonAdd.Enabled = true;
+                buttonDelete.Enabled = true;
+                buttonEditSave.Text = "Edit";
+                textBoxName.Text = "";
             }
         }
     }

@@ -37,6 +37,7 @@ namespace szofttech2_projekt_jpwqqk
             this.textBoxLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxDate = new System.Windows.Forms.TextBox();
+            this.buttonEditSave = new System.Windows.Forms.Button();
             this.contactidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactplaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +59,7 @@ namespace szofttech2_projekt_jpwqqk
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(61, 238);
+            this.buttonAdd.Location = new System.Drawing.Point(61, 224);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(117, 50);
             this.buttonAdd.TabIndex = 16;
@@ -120,6 +121,17 @@ namespace szofttech2_projekt_jpwqqk
             this.textBoxDate.Name = "textBoxDate";
             this.textBoxDate.Size = new System.Drawing.Size(189, 22);
             this.textBoxDate.TabIndex = 9;
+            this.textBoxDate.Text = "yyyy.mm.dd";
+            // 
+            // buttonEditSave
+            // 
+            this.buttonEditSave.Location = new System.Drawing.Point(61, 289);
+            this.buttonEditSave.Name = "buttonEditSave";
+            this.buttonEditSave.Size = new System.Drawing.Size(117, 50);
+            this.buttonEditSave.TabIndex = 18;
+            this.buttonEditSave.Text = "Edit";
+            this.buttonEditSave.UseVisualStyleBackColor = true;
+            this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
             // 
             // contactidDataGridViewTextBoxColumn
             // 
@@ -167,6 +179,7 @@ namespace szofttech2_projekt_jpwqqk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonEditSave);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView1);
@@ -197,5 +210,6 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.DataGridViewTextBoxColumn contactplaceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn connectionsDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource contactBindingSource;
+        private System.Windows.Forms.Button buttonEditSave;
     }
 }

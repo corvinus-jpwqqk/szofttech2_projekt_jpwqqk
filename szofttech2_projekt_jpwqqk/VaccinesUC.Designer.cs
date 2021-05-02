@@ -39,13 +39,14 @@ namespace szofttech2_projekt_jpwqqk
             this.vaccineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.buttonEditSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vaccineBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(63, 356);
+            this.buttonDelete.Location = new System.Drawing.Point(63, 346);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(117, 50);
             this.buttonDelete.TabIndex = 24;
@@ -55,7 +56,7 @@ namespace szofttech2_projekt_jpwqqk
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(63, 238);
+            this.buttonAdd.Location = new System.Drawing.Point(63, 202);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(117, 50);
             this.buttonAdd.TabIndex = 23;
@@ -132,10 +133,21 @@ namespace szofttech2_projekt_jpwqqk
             this.textBoxName.Size = new System.Drawing.Size(189, 22);
             this.textBoxName.TabIndex = 18;
             // 
+            // buttonEditSave
+            // 
+            this.buttonEditSave.Location = new System.Drawing.Point(63, 272);
+            this.buttonEditSave.Name = "buttonEditSave";
+            this.buttonEditSave.Size = new System.Drawing.Size(117, 50);
+            this.buttonEditSave.TabIndex = 25;
+            this.buttonEditSave.Text = "Edit";
+            this.buttonEditSave.UseVisualStyleBackColor = true;
+            this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
+            // 
             // VaccinesUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonEditSave);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView1);
@@ -161,5 +173,6 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.BindingSource vaccineBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.Button buttonEditSave;
     }
 }

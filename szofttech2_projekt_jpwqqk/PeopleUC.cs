@@ -14,6 +14,8 @@ namespace szofttech2_projekt_jpwqqk
     public partial class PeopleUC : UserControl
     {
         covidDatabaseEntities context = new covidDatabaseEntities();
+        bool editing = false;
+        int editingID;
         public PeopleUC()
         {
             InitializeComponent();
@@ -75,6 +77,9 @@ namespace szofttech2_projekt_jpwqqk
             {
                 context.SaveChanges();
                 listPeople();
+                textBoxName.Text = "";
+                textBoxBirthdate.Text = "yyyy.mm.dd";
+                textBoxPhoneNumber.Text = "";
             }
             catch (Exception ex)
             {
@@ -98,6 +103,72 @@ namespace szofttech2_projekt_jpwqqk
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void buttonEditSave_Click(object sender, EventArgs e)
+        {
+            if (!editing)
+            {
+                if (personBindingSource.Current == null)
+                {
+                    MessageBox.Show("No item selected!");
+                    return;
+                }
+                else
+                {
+                    editing = true;
+                    buttonAdd.Enabled = false;
+                    buttonDelete.Enabled = false;
+                    buttonEditSave.Text = "Save";
+                    editingID = ((Person)personBindingSource.Current).person_id;
+                    var editPerson = (from x in context.People
+                                      where x.person_id == editingID
+                                      select x).FirstOrDefault();
+                    textBoxName.Text = editPerson.person_name;
+                    textBoxPhoneNumber.Text = editPerson.person_number;
+                    textBoxBirthdate.Text = editPerson.person_birthdate.Value.ToString("yyyy.MM.dd");
+                }
+            }
+            else
+            {
+                if (!checkName())
+                {
+                    MessageBox.Show("Name missing!");
+                    return;
+                }
+                else if (!checkBirthdate())
+                {
+                    MessageBox.Show("Birthdate incorrect!");
+                    return;
+                }
+                else if (!checkPhoneNumber())
+                {
+                    MessageBox.Show("Phone number incorrect!");
+                    return;
+                }
+                var editPerson = (from x in context.People
+                                  where x.person_id == editingID
+                                  select x).FirstOrDefault();
+                editPerson.person_name = textBoxName.Text;
+                editPerson.person_birthdate = Convert.ToDateTime(textBoxBirthdate.Text);
+                editPerson.person_number = textBoxPhoneNumber.Text;
+                try
+                {
+                    context.SaveChanges();
+                    listPeople();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                textBoxName.Text = "";
+                textBoxBirthdate.Text = "yyyy.mm.dd";
+                textBoxPhoneNumber.Text = "";
+                buttonAdd.Enabled = true;
+                buttonDelete.Enabled = true;
+                buttonEditSave.Text = "Edit";
+            }
+            
         }
     }
 }

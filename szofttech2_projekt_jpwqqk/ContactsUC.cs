@@ -14,6 +14,8 @@ namespace szofttech2_projekt_jpwqqk
     public partial class ContactsUC : UserControl
     {
         covidDatabaseEntities context = new covidDatabaseEntities();
+        bool editing = false;
+        int editingID;
         public ContactsUC()
         {
             InitializeComponent();
@@ -66,6 +68,8 @@ namespace szofttech2_projekt_jpwqqk
             {
                 MessageBox.Show(ex.Message);
             }
+            textBoxLocation.Text = "";
+            textBoxDate.Text = "yyyy.mm.dd";
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -83,6 +87,64 @@ namespace szofttech2_projekt_jpwqqk
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonEditSave_Click(object sender, EventArgs e)
+        {
+            if (!editing)
+            {
+                if(contactBindingSource.Current == null)
+                {
+                    MessageBox.Show("No selected item!");
+                    return;
+                }
+                else
+                {
+                    editing = true;
+                    editingID = ((Contact)contactBindingSource.Current).contact_id;
+                    var editContact = (from x in context.Contacts
+                                       where x.contact_id == editingID
+                                       select x).FirstOrDefault();
+                    textBoxDate.Text = editContact.contact_date.Value.ToString("yyyy.MM.dd");
+                    textBoxLocation.Text = editContact.contact_place;
+                    buttonAdd.Enabled = false;
+                    buttonDelete.Enabled = false;
+                    buttonEditSave.Text = "Save";
+                }
+            }
+            else
+            {
+                if (!checkDate())
+                {
+                    MessageBox.Show("Incorrect date!");
+                    return;
+                }
+                else if (!checkLocation())
+                {
+                    MessageBox.Show("Location missing!");
+                    return;
+                }
+                var editContact = (from x in context.Contacts
+                                   where x.contact_id == editingID
+                                   select x).FirstOrDefault();
+                editContact.contact_date = Convert.ToDateTime(textBoxDate.Text);
+                editContact.contact_place = textBoxLocation.Text;
+                try
+                {
+                    context.SaveChanges();
+                    listContacts();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                editing = false;
+                buttonAdd.Enabled = true;
+                buttonDelete.Enabled = true;
+                buttonEditSave.Text = "Edit";
+                textBoxDate.Text = "";
+                textBoxLocation.Text = "";
             }
         }
     }
