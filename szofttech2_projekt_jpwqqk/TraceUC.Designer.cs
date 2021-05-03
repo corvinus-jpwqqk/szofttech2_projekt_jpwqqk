@@ -78,7 +78,7 @@ namespace szofttech2_projekt_jpwqqk
             this.textBoxPersonFilter.Name = "textBoxPersonFilter";
             this.textBoxPersonFilter.Size = new System.Drawing.Size(197, 22);
             this.textBoxPersonFilter.TabIndex = 6;
-            this.textBoxPersonFilter.TextChanged += new System.EventHandler(this.textBoxPersonFilter_TextChanged);
+            this.textBoxPersonFilter.TextChanged += new System.EventHandler(this.TextBoxPersonFilter_TextChanged);
             // 
             // listBox1
             // 
