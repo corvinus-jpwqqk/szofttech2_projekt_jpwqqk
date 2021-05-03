@@ -35,9 +35,9 @@ namespace szofttech2_projekt_jpwqqk
             this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxPersonFilter = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.buttonTrace = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.personBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonTrace = new System.Windows.Forms.Button();
+            this.buttonTrace2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +82,8 @@ namespace szofttech2_projekt_jpwqqk
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.DataSource = this.personBindingSource1;
             this.listBox1.DisplayMember = "person_name";
@@ -93,11 +94,12 @@ namespace szofttech2_projekt_jpwqqk
             this.listBox1.Size = new System.Drawing.Size(197, 436);
             this.listBox1.TabIndex = 10;
             // 
+            // personBindingSource1
+            // 
+            this.personBindingSource1.DataSource = typeof(szofttech2_projekt_jpwqqk.Person);
+            // 
             // buttonTrace
             // 
-            this.buttonTrace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonTrace.Location = new System.Drawing.Point(345, 133);
             this.buttonTrace.Name = "buttonTrace";
             this.buttonTrace.Size = new System.Drawing.Size(194, 55);
@@ -106,27 +108,21 @@ namespace szofttech2_projekt_jpwqqk
             this.buttonTrace.UseVisualStyleBackColor = true;
             this.buttonTrace.Click += new System.EventHandler(this.buttonTrace_Click);
             // 
-            // button1
+            // buttonTrace2
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(345, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 55);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Trace";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // personBindingSource1
-            // 
-            this.personBindingSource1.DataSource = typeof(szofttech2_projekt_jpwqqk.Person);
+            this.buttonTrace2.Location = new System.Drawing.Point(345, 207);
+            this.buttonTrace2.Name = "buttonTrace2";
+            this.buttonTrace2.Size = new System.Drawing.Size(194, 55);
+            this.buttonTrace2.TabIndex = 14;
+            this.buttonTrace2.Text = "Trace vulnerable";
+            this.buttonTrace2.UseVisualStyleBackColor = true;
+            this.buttonTrace2.Click += new System.EventHandler(this.buttonTrace2_Click);
             // 
             // TraceUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonTrace2);
             this.Controls.Add(this.buttonTrace);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
@@ -149,7 +145,7 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button buttonTrace;
         private System.Windows.Forms.BindingSource personBindingSource;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonTrace2;
         private System.Windows.Forms.BindingSource personBindingSource1;
     }
 }

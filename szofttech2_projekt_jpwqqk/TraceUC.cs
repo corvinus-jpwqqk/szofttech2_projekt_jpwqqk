@@ -38,7 +38,6 @@ namespace szofttech2_projekt_jpwqqk
         void Trace(int personID)
         {
             Traced.Clear();
-            MessageBox.Show(Traced.Count.ToString());
             var contacts = (from x in context.Connections
                             where x.person_id == personID
                             select x.contact_id).ToList();
@@ -58,15 +57,12 @@ namespace szofttech2_projekt_jpwqqk
                                        where x.contact_id == contactid
                                        select x.contact_date).FirstOrDefault();
                         DateTime date = Convert.ToDateTime(getdate);
-                        MessageBox.Show("Calling trace on: " + id.ToString() + " with date: " + date.ToString());
                         Trace(id, date);
                     }
                 }
             }
-            MessageBox.Show("Removing from list: "+ personID.ToString());
             Traced.Remove(personID);
-            ListTraced();
-            MessageBox.Show("Successfully traced: " + personID.ToString());
+            
         }
         void Trace(int personID, DateTime contactDate)
         {
@@ -107,6 +103,30 @@ namespace szofttech2_projekt_jpwqqk
             Traced.Clear();
             int personID = ((Person)personBindingSource.Current).person_id;
             Trace(personID);
+            ListTraced();
+        }
+
+        private void buttonTrace2_Click(object sender, EventArgs e)
+        {
+            Traced.Clear();
+            int personID = ((Person)personBindingSource.Current).person_id;
+            Trace(personID);
+            List<int> rmID = new List<int>();
+            foreach(var id in Traced)
+            {
+                var vaccinations = from x in context.Vaccinations
+                                   where x.person_id == id
+                                   select x;
+                if(vaccinations.Count() > 0)
+                {
+                    rmID.Add(id);
+                }
+            }
+            foreach(var id in rmID)
+            {
+                Traced.Remove(id);
+            }
+            ListTraced();
         }
     }
 }

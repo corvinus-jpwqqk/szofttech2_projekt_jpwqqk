@@ -33,13 +33,13 @@ namespace szofttech2_projekt_jpwqqk
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.vaccineidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vaccinenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vaccinationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vaccineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.buttonEditSave = new System.Windows.Forms.Button();
+            this.vaccineidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vaccinenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vaccinationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vaccineBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -86,33 +86,6 @@ namespace szofttech2_projekt_jpwqqk
             this.dataGridView1.Size = new System.Drawing.Size(685, 532);
             this.dataGridView1.TabIndex = 22;
             // 
-            // vaccineidDataGridViewTextBoxColumn
-            // 
-            this.vaccineidDataGridViewTextBoxColumn.DataPropertyName = "vaccine_id";
-            this.vaccineidDataGridViewTextBoxColumn.HeaderText = "vaccine_id";
-            this.vaccineidDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.vaccineidDataGridViewTextBoxColumn.Name = "vaccineidDataGridViewTextBoxColumn";
-            this.vaccineidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vaccineidDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // vaccinenameDataGridViewTextBoxColumn
-            // 
-            this.vaccinenameDataGridViewTextBoxColumn.DataPropertyName = "vaccine_name";
-            this.vaccinenameDataGridViewTextBoxColumn.HeaderText = "vaccine_name";
-            this.vaccinenameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.vaccinenameDataGridViewTextBoxColumn.Name = "vaccinenameDataGridViewTextBoxColumn";
-            this.vaccinenameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vaccinenameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // vaccinationsDataGridViewTextBoxColumn
-            // 
-            this.vaccinationsDataGridViewTextBoxColumn.DataPropertyName = "Vaccinations";
-            this.vaccinationsDataGridViewTextBoxColumn.HeaderText = "Vaccinations";
-            this.vaccinationsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.vaccinationsDataGridViewTextBoxColumn.Name = "vaccinationsDataGridViewTextBoxColumn";
-            this.vaccinationsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vaccinationsDataGridViewTextBoxColumn.Width = 125;
-            // 
             // vaccineBindingSource
             // 
             this.vaccineBindingSource.DataSource = typeof(szofttech2_projekt_jpwqqk.Vaccine);
@@ -143,6 +116,34 @@ namespace szofttech2_projekt_jpwqqk
             this.buttonEditSave.UseVisualStyleBackColor = true;
             this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
             // 
+            // vaccineidDataGridViewTextBoxColumn
+            // 
+            this.vaccineidDataGridViewTextBoxColumn.DataPropertyName = "vaccine_id";
+            this.vaccineidDataGridViewTextBoxColumn.HeaderText = "vaccine_id";
+            this.vaccineidDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.vaccineidDataGridViewTextBoxColumn.Name = "vaccineidDataGridViewTextBoxColumn";
+            this.vaccineidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vaccineidDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // vaccinenameDataGridViewTextBoxColumn
+            // 
+            this.vaccinenameDataGridViewTextBoxColumn.DataPropertyName = "vaccine_name";
+            this.vaccinenameDataGridViewTextBoxColumn.HeaderText = "vaccine_name";
+            this.vaccinenameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.vaccinenameDataGridViewTextBoxColumn.Name = "vaccinenameDataGridViewTextBoxColumn";
+            this.vaccinenameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vaccinenameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // vaccinationsDataGridViewTextBoxColumn
+            // 
+            this.vaccinationsDataGridViewTextBoxColumn.DataPropertyName = "Vaccinations";
+            this.vaccinationsDataGridViewTextBoxColumn.HeaderText = "Vaccinations";
+            this.vaccinationsDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.vaccinationsDataGridViewTextBoxColumn.Name = "vaccinationsDataGridViewTextBoxColumn";
+            this.vaccinationsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vaccinationsDataGridViewTextBoxColumn.Visible = false;
+            this.vaccinationsDataGridViewTextBoxColumn.Width = 125;
+            // 
             // VaccinesUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -167,12 +168,12 @@ namespace szofttech2_projekt_jpwqqk
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vaccineidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vaccinenameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vaccinationsDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource vaccineBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Button buttonEditSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vaccineidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vaccinenameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vaccinationsDataGridViewTextBoxColumn;
     }
 }
